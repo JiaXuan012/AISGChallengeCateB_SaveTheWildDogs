@@ -1,0 +1,20 @@
+nodes:
+- input.visual:
+    source: video.mp4
+- model.yolo:
+    model_type: "v4"
+    detect_ids: [16]
+    score_threshold: 0.2
+- dabble.bbox_to_btm_midpoint
+- dabble.zone_count:
+    resolution: [1920, 1080]
+    zones: [[[0,0],[0,0.95],[1,0.95],[1,0]]]
+- draw.bbox
+- draw.zones
+- draw.legend:
+    show: ["zone_count"]
+- output.screen:
+    window_size: { do_resizing: True, width: 1920, height: 1080 }
+- output.media_writer:
+    output_dir: /ASP
+    
